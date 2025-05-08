@@ -1,0 +1,224 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    image-rendering: pixelated;
+}
+
+header {
+    background-color: #ff0000;
+    padding: 1.5vh 0;
+    border-bottom: 0.15vw solid #fff;
+}
+
+h1 {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    text-shadow: 0.1rem 0.1rem #000;
+}
+
+h2 {
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    color: #00ff00;
+}
+
+h3 {
+    font-size: clamp(0.6rem, 1.5vw, 1rem);
+    color: #ffff00;
+}
+
+p {
+    font-size: clamp(0.5rem, 1.2vw, 0.8rem);
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+section {
+    margin: 1.5vh auto;
+    padding: 1.5vh 1.5vw;
+    background-color: #333;
+    border: 0.15vw solid #fff;
+}
+
+.doge-efficiency-clock {
+    margin: 1.5vh auto;
+    padding: 0.8vh 1.5vw;
+    background-color: #222;
+    border: 0.15vw solid #ffff00; /* DOGE yellow border */
+    box-shadow: 0 0 10px #ffff00; /* Glowing effect */
+}
+
+#efficiencyTimer {
+    font-size: clamp(0.6rem, 1.5vw, 1rem);
+    color: #ffff00; /* DOGE yellow text */
+    text-shadow: 0.05rem 0.05rem #000;
+    margin-bottom: 0.5vh;
+}
+
+.event-timer-section {
+    margin: 1.5vh auto;
+    padding: 0.8vh 1.5vw;
+    background-color: #222;
+    border: 0.15vw solid #ffcc00; /* Slightly different yellow for event timer */
+    box-shadow: 0 0 10px #ffcc00; /* Glowing effect */
+}
+
+#eventTimer {
+    font-size: clamp(0.6rem, 1.5vw, 1rem);
+    color: #ffcc00; /* Event timer yellow text */
+    text-shadow: 0.05rem 0.05rem #000;
+    margin-bottom: 0.5vh;
+}
+
+.progress-section {
+    margin: 1.5vh auto;
+    padding: 0.8vh 1.5vw;
+}
+
+.bar-container {
+    width: 90%;
+    max-width: 400px;
+    background-color: #444;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.bar-fill {
+    width: 0%;
+    height: 15px;
+    background-color: #00ff00;
+    text-align: center;
+    line-height: 15px;
+    color: #000;
+    font-size: clamp(0.4rem, 1vw, 0.6rem);
+    transition: width 0.5s ease-in-out;
+}
+
+#statusMessage {
+    margin-top: 0.8vh;
+    font-size: clamp(0.4rem, 1vw, 0.6rem);
+    color: #ffff00;
+}
+
+.hero {
+    text-align: center;
+}
+
+.hero .pixel-art {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    width: clamp(120px, 35vw, 180px);
+    image-rendering: pixelated;
+}
+
+.hero h3 {
+    margin: 0.8vh 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: clamp(0.4rem, 1.5vw, 0.8rem) clamp(0.8rem, 2.5vw, 1.5rem);
+    background-color: #00ffff;
+    color: #000;
+    text-decoration: none;
+    border: 0.15vw solid #fff;
+    font-size: clamp(0.5rem, 1.2vw, 0.7rem);
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: #ff00ff;
+    color: #fff;
+}
+
+footer {
+    background-color: #0000ff;
+    padding: 0.8vh 0;
+    border-top: 0.15vw solid #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    font-size: clamp(0.4rem, 1vw, 0.6rem);
+}
+
+/* Media Queries for Specific Breakpoints */
+@media (max-width: 768px) {
+    header {
+        padding: 1vh 0;
+    }
+    section {
+        margin: 1vh auto;
+        padding: 1vh 1.2vw;
+    }
+    .doge-efficiency-clock {
+        padding: 0.6vh 1.2vw;
+    }
+    .event-timer-section {
+        padding: 0.6vh 1.2vw;
+    }
+    .progress-section {
+        padding: 0.6vh 1.2vw;
+    }
+    .bar-container {
+        width: 95%;
+        max-width: 350px;
+    }
+    .hero .pixel-art {
+        width: clamp(100px, 30vw, 140px);
+    }
+    .btn {
+        padding: clamp(0.3rem, 1.2vw, 0.6rem) clamp(0.6rem, 2vw, 1.2rem);
+    }
+    footer {
+        padding: 0.6vh 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0.8vh 0;
+    }
+    section {
+        margin: 0.8vh auto;
+        padding: 0.8vh 1vw;
+    }
+    .doge-efficiency-clock {
+        padding: 0.5vh 1vw;
+    }
+    .event-timer-section {
+        padding: 0.5vh 1vw;
+    }
+    .progress-section {
+        padding: 0.5vh 1vw;
+    }
+    .bar-container {
+        width: 95%;
+        max-width: 300px;
+    }
+    .bar-fill {
+        height: 12px;
+        line-height: 12px;
+    }
+    .hero .pixel-art {
+        width: clamp(80px, 25vw, 100px);
+    }
+    .btn {
+        padding: clamp(0.2rem, 0.8vw, 0.5rem) clamp(0.5rem, 1.5vw, 1rem);
+    }
+    footer {
+        padding: 0.2vh 0;
+        border-top: 0.05vw solid #fff;
+    }
+}

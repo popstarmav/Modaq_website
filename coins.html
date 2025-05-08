@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memecoin Reserve - Coins</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Sidebar styles (copied from index.html for consistency) */
+        .nav-section {
+            background-color: #1a1a1a;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hamburger {
+            font-size: 30px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .hamburger:hover {
+            color: #ffcb05;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1001;
+            top: 0;
+            left: 0;
+            background-color: #1a1a1a;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar.open {
+            width: 250px;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .sidebar .close-btn:hover {
+            color: #e3350d;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-item {
+            position: relative;
+        }
+
+        .sidebar-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #e3350d;
+            color: #fff;
+            text-align: left;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-btn:hover {
+            background-color: #ffcb05;
+            color: #333;
+        }
+
+        .submenu {
+            display: none;
+            list-style: none;
+            padding: 0;
+            background-color: #2a2a2a;
+        }
+
+        .sidebar-item.active .submenu {
+            display: block;
+        }
+
+        .submenu li a {
+            display: block;
+            padding: 10px 30px;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .submenu li a:hover {
+            background-color: #f0f0f0;
+            color: #e3350d;
+        }
+
+        /* Adjust body padding for sticky nav */
+        body {
+            padding-top: 60px;
+            padding-bottom: 60px;
+            margin: 0;
+            transition: margin-left 0.5s;
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body.sidebar-open {
+            margin-left: 250px;
+        }
+
+        /* Overlay for when sidebar is open */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Coins Page Specific Styles */
+        .coins-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .coins-header {
+            text-align: center;
+            color: #e3350d;
+            text-shadow: 1px 1px #ffcb05;
+            margin-bottom: 20px;
+        }
+
+        .coins-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .coin-card {
+            background-color: #fff;
+            border: 4px solid #e3350d;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .coin-card h3 {
+            color: #3c5aa6;
+            margin: 0 0 10px;
+        }
+
+        .coin-card p {
+            color: #333;
+            font-size: 14px;
+            margin: 0 0 15px;
+        }
+
+        .coin-card a {
+            display: inline-block;
+            background-color: #e3350d;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: transform 0.2s;
+        }
+
+        .coin-card a:hover {
+            transform: scale(1.1);
+            background-color: #ffcb05;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Sidebar Navigation -->
+    <section class="nav-section">
+        <button class="hamburger" id="hamburger-btn">☰</button>
+    </section>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">×</button>
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <button class="sidebar-btn" data-target="coins-submenu">Coins</button>
+                <ul class="submenu" id="coins-submenu">
+                    <li><a href="coins.html">View All Coins</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <button class="sidebar-btn" data-target="shop-submenu">Shop</button>
+                <ul class="submenu" id="shop-submenu">
+                    <li><a href="index.html#shop-items">Meme Merch (Coming Soon)</a></li>
+                    <li><a href="index.html#nft-market">NFTs (Coming Soon)</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <button class="sidebar-btn" data-target="games-submenu">Games</button>
+                <ul class="submenu" id="games-submenu">
+                    <li><a href="index.html#pokemon-trading">Pokémon TradingView</a></li>
+                    <li><a href="index.html#stock-market">Stock Market (MCRX)</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-btn">Home</a>
+            </li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Coins Content -->
+    <div class="coins-container">
+        <h1 class="coins-header">Our Memecoins</h1>
+        <div class="coins-list">
+            <div class="coin-card">
+                <h3>$MCR - Memecoin Reserve</h3>
+                <p>A revolutionary meme token combining the power of memes with the stability of a reserve currency. Launched on Pump.fun and powered by Solana.</p>
+                <a href="https://pump.fun/coin/CQiAuR7FEHu3m4uqDC11PUtz5fvCATPC29FJr7hvpump?include-nsfw=true" target="_blank">Buy $MCR</a>
+            </div>
+            <div class="coin-card">
+                <h3>$DOGE - Efficiency Token</h3>
+                <p>Inspired by the Department of Government Efficiency, this token aims to cut waste and boost efficiency in the meme economy. (Coming Soon)</p>
+                <a href="#">Coming Soon</a>
+            </div>
+            <div class="coin-card">
+                <h3>$SHIB - Meme Shiba</h3>
+                <p>A playful token celebrating the Shiba Inu meme culture, with plans for community-driven growth. (Coming Soon)</p>
+                <a href="#">Coming Soon</a>
+            </div>
+            <div class="coin-card">
+                <h3>$PEPE - Frog Coin</h3>
+                <p>Based on the iconic Pepe the Frog meme, this coin brings humor and value to the memecoin space. (Coming Soon)</p>
+                <a href="#">Coming Soon</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Stay connected with our community: <a href="https://discord.gg/KVJxgjF2mR">AILYF3</a></p>
+    </footer>
+
+    <script>
+        // Sidebar Toggle Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const sidebar = document.getElementById('sidebar');
+            const closeBtn = document.getElementById('close-btn');
+            const overlay = document.getElementById('overlay');
+            const body = document.body;
+
+            hamburgerBtn.addEventListener('click', () => {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+                body.classList.add('sidebar-open');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            });
+
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            });
+
+            // Submenu Toggle
+            const sidebarBtns = document.querySelectorAll('.sidebar-btn');
+            sidebarBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const submenuId = btn.getAttribute('data-target');
+                    if (!submenuId) return; // Skip if it's a direct link (e.g., Home)
+                    const submenu = document.getElementById(submenuId);
+                    const parentItem = btn.parentElement;
+                    const isActive = parentItem.classList.contains('active');
+
+                    // Close all other submenus
+                    document.querySelectorAll('.sidebar-item').forEach(item => {
+                        if (item !== parentItem) {
+                            item.classList.remove('active');
+                        }
+                    });
+
+                    // Toggle current submenu
+                    if (!isActive) {
+                        parentItem.classList.add('active');
+                    } else {
+                        parentItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
