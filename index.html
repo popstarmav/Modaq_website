@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modaq - Crypto Hedge Fund</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Sidebar Navigation Styles (unchanged) */
+        .nav-section {
+            background-color: #1a1a1a;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hamburger {
+            font-size: 30px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+
+        .hamburger:hover {
+            color: #ffcb05;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1001;
+            top: 0;
+            left: 0;
+            background-color: #1a1a1a;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar.open {
+            width: 250px;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .sidebar .close-btn:hover {
+            color: #e3350d;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-item {
+            position: relative;
+        }
+
+        .sidebar-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #e3350d;
+            color: #fff;
+            text-align: left;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-btn:hover {
+            background-color: #ffcb05;
+            color: #333;
+        }
+
+        .submenu {
+            display: none;
+            list-style: none;
+            padding: 0;
+            background-color: #2a2a2a;
+        }
+
+        .sidebar-item.active .submenu {
+            display: block;
+        }
+
+        .submenu li a {
+            display: block;
+            padding: 10px 30px;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .submenu li a:hover {
+            background-color: #f0f0f0;
+            color: #e3350d;
+        }
+
+        /* Adjust body padding for sticky nav */
+        body {
+            padding-top: 60px;
+            padding-bottom: 60px;
+            margin: 0;
+            transition: margin-left 0.5s;
+        }
+
+        body.sidebar-open {
+            margin-left: 250px;
+        }
+
+        /* Overlay for when sidebar is open */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Styles for Modaq branding */
+        .hero, .about {
+            text-align: center;
+            padding: 20px;
+            font-family: 'Press Start 2P', cursive;
+            color: #fff;
+            background-color: #333;
+            margin: 10px 0;
+        }
+
+        .hero h3, .about h3 {
+            color: #ffcb05;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e3350d;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ffcb05;
+            color: #333;
+        }
+
+        .pixel-art {
+            max-width: 200px;
+            margin: 10px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Sidebar Navigation -->
+    <section class="nav-section">
+        <button class="hamburger" id="hamburger-btn">☰</button>
+    </section>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">×</button>
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <button class="sidebar-btn" data-target="portfolio-submenu">Portfolio</button>
+                <ul class="submenu" id="portfolio-submenu">
+                    <li><a href="#memecoin-charts">View Memecoin Holdings</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-item">
+                <button class="sidebar-btn" data-target="invest-submenu">Invest</button>
+                <ul class="submenu" id="invest-submenu">
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#investor-portal">Investor Portal (Coming Soon)</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Modaq Section -->
+    <section id="modaq-section">
+        <header>
+            <h1>Modaq Crypto Fund</h1>
+            <p>Turning Memecoins into Mega Profits</p>
+        </header>
+        <section class="hero">
+            <img src="modaq_logo.png" alt="Pixel Modaq Logo" class="pixel-art">
+            <h3>Your Memecoin Hedge Fund</h3>
+            <p>Modaq is a crypto hedge fund that captures the explosive potential of memecoins like Dogecoin and Shiba Inu, delivering alpha through expert trading and risk management. While others HODL for dear life, we’re stacking coins—or you’ll be trading Doge for a Scooby Snack!</p>
+        </section>
+        <section class="about">
+            <h3>About Modaq</h3>
+            <p>Modaq leverages the memecoin revolution, where tokens have soared thousands of percent, to generate returns for accredited investors. Our team of crypto veterans uses AI-driven arbitrage, momentum trading, and portfolio diversification across Bitcoin and Ethereum. Secured by Fireblocks custody and transparent audits, Modaq targets 20-40% annualized returns, balancing memecoin hype with disciplined strategy.</p>
+            <p>Our proprietary Memecoin Capital Rotation (MCR) strategy scans X for viral trends, exploits price inefficiencies, and rotates capital into high-potential tokens. We diversify with stable cryptos and use stop-loss orders to manage volatility, ensuring your investment thrives in the wild crypto market.</p>
+        </section>
+    </section>
+
+    <footer>
+        <p>Join our community: <a href="https://discord.gg/modaq">Modaq Discord</a></p>
+    </footer>
+
+    <script>
+        // Sidebar Toggle Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const sidebar = document.getElementById('sidebar');
+            const closeBtn = document.getElementById('close-btn');
+            const overlay = document.getElementById('overlay');
+            const body = document.body;
+
+            hamburgerBtn.addEventListener('click', () => {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+                body.classList.add('sidebar-open');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            });
+
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                body.classList.remove('sidebar-open');
+            });
+
+            const sidebarBtns = document.querySelectorAll('.sidebar-btn');
+            sidebarBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const submenuId = btn.getAttribute('data-target');
+                    const submenu = document.getElementById(submenuId);
+                    const parentItem = btn.parentElement;
+                    const isActive = parentItem.classList.contains('active');
+
+                    document.querySelectorAll('.sidebar-item').forEach(item => {
+                        if (item !== parentItem) {
+                            item.classList.remove('active');
+                        }
+                    });
+
+                    if (!isActive) {
+                        parentItem.classList.add('active');
+                    } else {
+                        parentItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
