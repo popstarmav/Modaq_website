@@ -151,6 +151,17 @@
             display: block;
         }
 
+        /* Styles for front title */
+        .front-title {
+            text-align: center;
+            padding: 20px;
+            font-family: 'Press Start 2P', cursive;
+            color: #ffcb05;
+            background-color: #333;
+            margin: 10px 0;
+            font-size: 24px;
+        }
+
         /* Styles for Modaq sections */
         .branding, .about, .mcr {
             text-align: center;
@@ -167,15 +178,8 @@
 
         .pixel-art {
             max-width: 200px;
-            margin: 10px auto;
+            margin: 20px auto;
             display: block;
-        }
-
-        .subtitle {
-            font-family: 'Arial', sans-serif;
-            font-size: 16px;
-            color: #ccc;
-            margin: 10px 0;
         }
 
         /* Styles for $MCR progress bar */
@@ -215,27 +219,32 @@
         <button class="close-btn" id="close-btn">×</button>
         <ul class="sidebar-menu">
             <li class="sidebar-item">
-                <button class="sidebar-btn" data-target="portfolio-submenu">Portfolio</button>
-                <ul class="submenu" id="portfolio-submenu">
-                    <li><a href="#memecoin-charts">View Memecoin Holdings</a></li>
-                </ul>
-            </li>
-            <li class="sidebar-item">
                 <button class="sidebar-btn" data-target="invest-submenu">Invest</button>
                 <ul class="submenu" id="invest-submenu">
                     <li><a href="#contact">Contact Us</a></li>
                     <li><a href="#investor-portal">Investor Portal (Coming Soon)</a></li>
                 </ul>
             </li>
+            <li class="sidebar-item">
+                <button class="sidebar-btn" data-target="store-submenu">Store</button>
+                <ul class="submenu" id="store-submenu">
+                    <li><a href="#store-merch">Merchandise (Coming Soon)</a></li>
+                    <li><a href="#store-collectibles">Digital Collectibles (Coming Soon)</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <div class="overlay" id="overlay"></div>
+
+    <!-- Front Title -->
+    <section class="front-title">
+        Investing in the Future of Memecoins
+    </section>
 
     <!-- Modaq Section -->
     <section id="modaq-section">
         <section class="branding">
             <img src="modaq_logo.png" alt="Modaq Logo" class="pixel-art">
-            <p class="subtitle">Investing in the Future of Memecoins</p>
         </section>
         <section class="about">
             <h3>About Modaq</h3>
