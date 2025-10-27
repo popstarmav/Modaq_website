@@ -3,47 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modaq - Crypto Hedge Fund</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Modaq - The Tokenization Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Sidebar Navigation Styles (unchanged) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(180deg, #1a1a2e, #0f0f23);
+            color: #e0e0ff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* About Section */
+        .about {
+            padding: 40px 20px;
+            text-align: center;
+            background: #0a0a1a;
+            border-bottom: 2px solid #00ffff;
+        }
+
+        .about h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 24px;
+            color: #ffcb05;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px #ffcb05;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto 15px;
+            font-size: 16px;
+        }
+
+        /* Responsive Design for About Section */
+        @media (max-width: 768px) {
+            .about h2 {
+                font-size: 20px;
+            }
+
+            .about p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about {
+                padding: 20px 10px;
+            }
+
+            .about h2 {
+                font-size: 18px;
+            }
+
+            .about p {
+                font-size: 12px;
+            }
+        }
+
+        /* Existing styles for other sections (unchanged) */
         .nav-section {
-            background-color: #1a1a1a;
-            padding: 10px;
+            background: linear-gradient(45deg, #1e90ff, #00b7eb);
+            padding: 10px 20px;
             position: sticky;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         .hamburger {
-            font-size: 30px;
+            font-size: 24px;
             color: #fff;
-            background: none;
-            border: none;
+            background: linear-gradient(45deg, #ff69b4, #ffcb05);
+            border: 2px solid #00ffff;
+            border-radius: 5px;
+            padding: 8px 12px;
             cursor: pointer;
-            padding: 10px;
-            transition: color 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .hamburger:hover {
-            color: #ffcb05;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #00ffff;
         }
 
         .sidebar {
             height: 100%;
             width: 0;
             position: fixed;
-            z-index: 1001;
             top: 0;
             left: 0;
-            background-color: #1a1a1a;
+            background: #0a0a1a;
             overflow-x: hidden;
-            transition: 0.5s;
+            transition: width 0.3s ease;
+            z-index: 1001;
             padding-top: 60px;
+            box-shadow: 2px 0 10px rgba(0, 255, 255, 0.3);
         }
 
         .sidebar.open {
@@ -52,90 +117,45 @@
 
         .sidebar .close-btn {
             position: absolute;
-            top: 10px;
-            right: 25px;
-            font-size: 36px;
-            color: #fff;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            color: #ff69b4;
             background: none;
             border: none;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
 
         .sidebar .close-btn:hover {
-            color: #e3350d;
+            color: #00ffff;
         }
 
         .sidebar-menu {
             list-style: none;
             padding: 0;
-            margin: 0;
-        }
-
-        .sidebar-item {
-            position: relative;
         }
 
         .sidebar-btn {
             display: block;
-            width: 100%;
             padding: 15px 20px;
-            background-color: #e3350d;
+            background: linear-gradient(45deg, #1e90ff, #00b7eb);
             color: #fff;
-            text-align: left;
             text-decoration: none;
-            font-family: 'Arial', sans-serif;
-            font-size: 16px;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            margin: 5px 10px;
+            border-radius: 5px;
+            border: 2px solid #00ffff;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .sidebar-btn:hover {
-            background-color: #ffcb05;
-            color: #333;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #00ffff;
         }
 
-        .submenu {
-            display: none;
-            list-style: none;
-            padding: 0;
-            background-color: #2a2a2a;
-        }
-
-        .sidebar-item.active .submenu {
-            display: block;
-        }
-
-        .submenu li a {
-            display: block;
-            padding: 10px 30px;
-            color: #fff;
-            text-decoration: none;
-            font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-
-        .submenu li a:hover {
-            background-color: #f0f0f0;
-            color: #e3350d;
-        }
-
-        /* Adjust body padding for sticky nav */
-        body {
-            padding-top: 60px;
-            padding-bottom: 60px;
-            margin: 0;
-            transition: margin-left 0.5s;
-        }
-
-        body.sidebar-open {
-            margin-left: 250px;
-        }
-
-        /* Overlay for when sidebar is open */
         .overlay {
             display: none;
             position: fixed;
@@ -143,7 +163,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 1000;
         }
 
@@ -151,120 +171,285 @@
             display: block;
         }
 
-        /* Styles for front title */
-        .front-title {
+        body.sidebar-open {
+            margin-left: 250px;
+        }
+
+        .hero {
             text-align: center;
-            padding: 20px;
+            padding: 60px 20px;
+            background: linear-gradient(45deg, #1e90ff, #00b7eb);
+            color: #fff;
+            border-bottom: 3px solid #ff69b4;
+            text-shadow: 0 0 10px #00ffff;
+        }
+
+        .hero h1 {
             font-family: 'Press Start 2P', cursive;
-            color: #ffcb05;
-            background-color: #333;
-            margin: 10px 0;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .roadmap {
+            padding: 40px 20px;
+            background: #1a1a2e;
+            text-align: center;
+        }
+
+        .roadmap h2 {
+            font-family: 'Press Start 2P', cursive;
             font-size: 24px;
-        }
-
-        /* Styles for Modaq sections */
-        .branding, .about, .mcr {
-            text-align: center;
-            padding: 20px;
-            font-family: 'Press Start 2P', cursive;
-            color: #fff;
-            background-color: #333;
-            margin: 10px 0;
-        }
-
-        .branding h3, .about h3, .mcr h3 {
             color: #ffcb05;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px #ffcb05;
         }
 
-        .pixel-art {
-            max-width: 200px;
-            margin: 20px auto;
-            display: block;
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* Styles for $MCR progress bar */
-        .bar-container {
-            width: 80%;
-            background-color: #444;
-            margin: 10px auto;
-            border-radius: 5px;
-            overflow: hidden;
+        .timeline-item {
+            background: #0a0a1a;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            transition: transform 0.3s;
         }
 
-        .bar-fill {
-            height: 20px;
-            background-color: #ffcb05;
-            width: 0%;
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #00ffff;
+        }
+
+        .timeline-item h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            color: #ff69b4;
+        }
+
+        .timeline-item p {
+            font-size: 14px;
+            color: #e0e0ff;
+        }
+
+        .projects {
+            padding: 40px 20px;
+            background: #0a0a1a;
             text-align: center;
-            line-height: 20px;
-            color: #333;
-            font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            transition: width 0.3s;
         }
 
-        #statusMessage {
-            font-family: 'Arial', sans-serif;
+        .projects h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 24px;
+            color: #ffcb05;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px #ffcb05;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: #1a1a2e;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00ffff;
+        }
+
+        .project-card h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            color: #ff69b4;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
             font-size: 14px;
+        }
+
+        footer {
+            background: linear-gradient(45deg, #1e90ff, #00b7eb);
+            padding: 20px;
+            text-align: center;
             color: #fff;
+            border-top: 3px solid #ff69b4;
+        }
+
+        footer p {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        footer .social-links a {
+            color: #ffcb05;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.2s;
+        }
+
+        footer .social-links a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        @media (max-width: 768px) {
+            body.sidebar-open {
+                margin-left: 0;
+            }
+
+            .sidebar.open {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 20px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .roadmap h2, .projects h2 {
+                font-size: 20px;
+            }
+
+            .timeline-item h3, .project-card h3 {
+                font-size: 14px;
+            }
+
+            .timeline-item p, .project-card p {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 40px 10px;
+            }
+
+            .roadmap, .projects {
+                padding: 20px 10px;
+            }
+
+            .hamburger {
+                padding: 6px 10px;
+                font-size: 20px;
+            }
+
+            .sidebar-btn {
+                font-size: 12px;
+                padding: 10px 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Hamburger Sidebar Navigation -->
+    <!-- Hamburger Menu -->
     <section class="nav-section">
         <button class="hamburger" id="hamburger-btn">☰</button>
     </section>
     <div class="sidebar" id="sidebar">
         <button class="close-btn" id="close-btn">×</button>
         <ul class="sidebar-menu">
-            <li class="sidebar-item">
-                <button class="sidebar-btn" data-target="invest-submenu">Invest</button>
-                <ul class="submenu" id="invest-submenu">
-                    <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="#investor-portal">Investor Portal (Coming Soon)</a></li>
-                </ul>
-            </li>
-            <li class="sidebar-item">
-                <button class="sidebar-btn" data-target="store-submenu">Store</button>
-                <ul class="submenu" id="store-submenu">
-                    <li><a href="#store-merch">Merchandise (Coming Soon)</a></li>
-                    <li><a href="#store-collectibles">Digital Collectibles (Coming Soon)</a></li>
-                </ul>
-            </li>
+            <li><a href="#home" class="sidebar-btn">Home</a></li>
+            <li><a href="#about" class="sidebar-btn">About</a></li>
+            <li><a href="#roadmap" class="sidebar-btn">Roadmap</a></li>
+            <li><a href="#projects" class="sidebar-btn">Projects</a></li>
+            <li><a href="#contact" class="sidebar-btn">Contact</a></li>
         </ul>
     </div>
     <div class="overlay" id="overlay"></div>
 
-    <!-- Front Title -->
-    <section class="front-title">
-        Investing in the Future of Memecoins
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Welcome to Modaq — The Tokenization Studio of the Future</h1>
+        <p>Building $WTC and the next generation of tokenized credit ecosystems.</p>
     </section>
 
-    <!-- Modaq Section -->
-    <section id="modaq-section">
-        <section class="branding">
-            <img src="modaq_logo.png" alt="Modaq Logo" class="pixel-art">
-        </section>
-        <section class="about">
-            <h3>About Modaq</h3>
-            <p>Modaq leverages the memecoin revolution, where tokens have soared thousands of percent, to generate returns for accredited investors. Our team of crypto veterans uses AI-driven arbitrage, momentum trading, and portfolio diversification across the cryptomarket. Secured by Fireblocks custody and transparent audits, Modaq targets 20-40% annualized returns, balancing memecoin hype with disciplined strategy.</p>
-            <p>In the future we are planing to release AI AGENTS to scans X for viral trends, exploits price inefficiencies. We diversify with stable cryptos and use stop-loss orders to manage volatility, ensuring your investment thrives in the wild crypto market.</p>
-        </section>
-        <section class="mcr">
-            <p>We share 25% of profits, including revenue from gaming and our store, as Meme Dividends, dynamically adjusted based on market cap. From this, the creator takes a fixed $40,000, with the remainder split equally—12.5% to holders (proportional to holdings) and 12.5% to scam victims (based on approved claims). If profits are too low for the $40,000 cut, dividends are paused. This quarterly payout system ensures a transparent reward ecosystem across all memecoins we launch/p>
-            <h4>AILYF3 Efficiency Clock</h4>
-            <div id="efficiencyTimer">Next Efficiency Payout: Calculating...</div>
-            <p>Counting down to the next $MCR dividend—cutting waste, meme-style!</p>
-            <div class="bar-container">
-                <div class="bar-fill" id="progressBar">0%</div>
+    <!-- Updated About Section -->
+    <section class="about" id="about">
+        <h2>About Modaq</h2>
+        <p>Modaq is revolutionizing finance by tokenizing credit lines and diverse assets, fusing Y2K digital optimism with blockchain innovation. Our flagship project, World Tokenize Credit ($WTC), transforms traditional credit lines into liquid, tradeable, and globally accessible digital assets, unlocking new opportunities for investors and businesses alike.</p>
+        <p>We tokenize a wide range of assets—from real estate and intellectual property to digital collectibles and financial instruments—creating stable, scalable ecosystems for the Web3 era. With sophisticated investment strategies akin to a forward-thinking hedge fund, Modaq maximizes value through seamless trading, fractional ownership, and enhanced liquidity, redefining how assets are managed and monetized.</p>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap" id="roadmap">
+        <h2>Roadmap</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Q4 2025</h3>
+                <p>Launch $WTC beta site + early credit token model</p>
             </div>
-            <div id="statusMessage">Progress: 0% of $250,000 dividend goal. Savings: $0 for 0 approved claim(s) across 1 memecoin(s). Creator's Cut: $40,000. Holders: $105,000 (12.5%). Victims: $105,000 (12.5%).</div>
-        </section>
+            <div class="timeline-item">
+                <h3>Q1 2026</h3>
+                <p>Partner with Web3 credit API + tokenization framework</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Q2 2026</h3>
+                <p>Release Modaq Token Labs for startups</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Q3 2026</h3>
+                <p>Launch Modaq Marketplace + $WTC integration</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Q4 2026</h3>
+                <p>Global partnerships & Modaq DAO activation</p>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <p>Join our community: <a href="https://discord.gg/modaq">Modaq Discord</a></p>
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>$WTC — World Tokenize Credit</h3>
+                <p>A tokenized credit system enabling liquid, tradeable, and global credit lines.</p>
+            </div>
+            <div class="project-card">
+                <h3>CreditX</h3>
+                <p>An experimental credit-backed stablecoin for secure and scalable transactions.</p>
+            </div>
+            <div class="project-card">
+                <h3>Modaq Agents</h3>
+                <p>AI systems powering tokenized finance infrastructure for efficiency and scale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>Built by Modaq. The future of credit is tokenized.</p>
+        <div class="social-links">
+            <a href="https://discord.gg/modaq">Discord</a>
+            <a href="https://x.com/modaq">X</a>
+            <a href="https://linkedin.com/company/modaq">LinkedIn</a>
+            <a href="#whitepaper">Whitepaper (Coming Soon)</a>
+        </div>
     </footer>
 
     <script>
@@ -293,71 +478,7 @@
                 overlay.classList.remove('active');
                 body.classList.remove('sidebar-open');
             });
-
-            const sidebarBtns = document.querySelectorAll('.sidebar-btn');
-            sidebarBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const submenuId = btn.getAttribute('data-target');
-                    const submenu = document.getElementById(submenuId);
-                    const parentItem = btn.parentElement;
-                    const isActive = parentItem.classList.contains('active');
-
-                    document.querySelectorAll('.sidebar-item').forEach(item => {
-                        if (item !== parentItem) {
-                            item.classList.remove('active');
-                        }
-                    });
-
-                    if (!isActive) {
-                        parentItem.classList.add('active');
-                    } else {
-                        parentItem.classList.remove('active');
-                    }
-                });
-            });
-
-            // Initialize Efficiency Clock
-            startEfficiencyClock();
         });
-
-        // AILYF3 Efficiency Clock
-        function startEfficiencyClock() {
-            const payoutDates = [
-                new Date("2025-07-01T00:00:00Z"),
-                new Date("2025-10-01T00:00:00Z"),
-                new Date("2026-01-01T00:00:00Z"),
-                new Date("2026-04-01T00:00:00Z")
-            ];
-
-            function getNextPayoutDate() {
-                const now = new Date();
-                let nextPayout = payoutDates.find(date => date > now);
-                if (!nextPayout) nextPayout = new Date(now.getFullYear() + 1, 0, 1);
-                return nextPayout;
-            }
-
-            function updateCountdown() {
-                const now = new Date();
-                const nextPayout = getNextPayoutDate();
-                const timeDiff = nextPayout - now;
-
-                if (timeDiff <= 0) {
-                    document.getElementById('efficiencyTimer').textContent = "Efficiency Payout Time! Processing...";
-                    setTimeout(updateCountdown, 1000);
-                    return;
-                }
-
-                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
-                document.getElementById('efficiencyTimer').textContent = `Next Efficiency Payout: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        }
     </script>
 </body>
 </html>
