@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modaq - The Tokenization Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Verdana&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Verdana', sans-serif;
             background: linear-gradient(180deg, #1a1a2e, #0f0f23);
             color: #e0e0ff;
             line-height: 1.6;
@@ -35,22 +35,26 @@
             color: #ffcb05;
             margin-bottom: 20px;
             text-shadow: 0 0 5px #ffcb05;
+            letter-spacing: 1px; /* Improved readability for pixel font */
         }
 
         .about p {
+            font-family: 'Verdana', sans-serif;
             max-width: 800px;
             margin: 0 auto 15px;
-            font-size: 16px;
+            font-size: 18px; /* Increased for better readability */
+            line-height: 1.8; /* Improved line spacing */
         }
 
         /* Responsive Design for About Section */
         @media (max-width: 768px) {
             .about h2 {
                 font-size: 20px;
+                letter-spacing: 0.5px;
             }
 
             .about p {
-                font-size: 14px;
+                font-size: 16px;
             }
         }
 
@@ -61,10 +65,11 @@
 
             .about h2 {
                 font-size: 18px;
+                letter-spacing: 0.3px;
             }
 
             .about p {
-                font-size: 12px;
+                font-size: 14px;
             }
         }
 
@@ -330,155 +335,3 @@
             .hero p {
                 font-size: 16px;
             }
-
-            .roadmap h2, .projects h2 {
-                font-size: 20px;
-            }
-
-            .timeline-item h3, .project-card h3 {
-                font-size: 14px;
-            }
-
-            .timeline-item p, .project-card p {
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 40px 10px;
-            }
-
-            .roadmap, .projects {
-                padding: 20px 10px;
-            }
-
-            .hamburger {
-                padding: 6px 10px;
-                font-size: 20px;
-            }
-
-            .sidebar-btn {
-                font-size: 12px;
-                padding: 10px 15px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Hamburger Menu -->
-    <section class="nav-section">
-        <button class="hamburger" id="hamburger-btn">☰</button>
-    </section>
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" id="close-btn">×</button>
-        <ul class="sidebar-menu">
-            <li><a href="#home" class="sidebar-btn">Home</a></li>
-            <li><a href="#about" class="sidebar-btn">About</a></li>
-            <li><a href="#roadmap" class="sidebar-btn">Roadmap</a></li>
-            <li><a href="#projects" class="sidebar-btn">Projects</a></li>
-            <li><a href="#contact" class="sidebar-btn">Contact</a></li>
-        </ul>
-    </div>
-    <div class="overlay" id="overlay"></div>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1>Welcome to Modaq — The Tokenization Studio of the Future</h1>
-        <p>Building $WTC and the next generation of tokenized credit ecosystems.</p>
-    </section>
-
-    <!-- Updated About Section -->
-    <section class="about" id="about">
-        <h2>About Modaq</h2>
-        <p>Modaq is revolutionizing finance by tokenizing credit lines and diverse assets, fusing Y2K digital optimism with blockchain innovation. Our flagship project, World Tokenize Credit ($WTC), transforms traditional credit lines into liquid, tradeable, and globally accessible digital assets, unlocking new opportunities for investors and businesses alike.</p>
-        <p>We tokenize a wide range of assets—from real estate and intellectual property to digital collectibles and financial instruments—creating stable, scalable ecosystems for the Web3 era. With sophisticated investment strategies akin to a forward-thinking hedge fund, Modaq maximizes value through seamless trading, fractional ownership, and enhanced liquidity, redefining how assets are managed and monetized.</p>
-    </section>
-
-    <!-- Roadmap Section -->
-    <section class="roadmap" id="roadmap">
-        <h2>Roadmap</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3>Q4 2025</h3>
-                <p>Launch $WTC beta site + early credit token model</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Q1 2026</h3>
-                <p>Partner with Web3 credit API + tokenization framework</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Q2 2026</h3>
-                <p>Release Modaq Token Labs for startups</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Q3 2026</h3>
-                <p>Launch Modaq Marketplace + $WTC integration</p>
-            </div>
-            <div class="timeline-item">
-                <h3>Q4 2026</h3>
-                <p>Global partnerships & Modaq DAO activation</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <h2>Projects</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <h3>$WTC — World Tokenize Credit</h3>
-                <p>A tokenized credit system enabling liquid, tradeable, and global credit lines.</p>
-            </div>
-            <div class="project-card">
-                <h3>CreditX</h3>
-                <p>An experimental credit-backed stablecoin for secure and scalable transactions.</p>
-            </div>
-            <div class="project-card">
-                <h3>Modaq Agents</h3>
-                <p>AI systems powering tokenized finance infrastructure for efficiency and scale.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <p>Built by Modaq. The future of credit is tokenized.</p>
-        <div class="social-links">
-            <a href="https://discord.gg/modaq">Discord</a>
-            <a href="https://x.com/modaq">X</a>
-            <a href="https://linkedin.com/company/modaq">LinkedIn</a>
-            <a href="#whitepaper">Whitepaper (Coming Soon)</a>
-        </div>
-    </footer>
-
-    <script>
-        // Sidebar Toggle Functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburgerBtn = document.getElementById('hamburger-btn');
-            const sidebar = document.getElementById('sidebar');
-            const closeBtn = document.getElementById('close-btn');
-            const overlay = document.getElementById('overlay');
-            const body = document.body;
-
-            hamburgerBtn.addEventListener('click', () => {
-                sidebar.classList.add('open');
-                overlay.classList.add('active');
-                body.classList.add('sidebar-open');
-            });
-
-            closeBtn.addEventListener('click', () => {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-                body.classList.remove('sidebar-open');
-            });
-
-            overlay.addEventListener('click', () => {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-                body.classList.remove('sidebar-open');
-            });
-        });
-    </script>
-</body>
-</html>
